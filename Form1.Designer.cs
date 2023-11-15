@@ -38,5 +38,12 @@
         private TextBox InputBox5;
         private TextBox InputBox6;
         private TextBox MessageBox;
+        private Label ParameterBox1;
+        private Label ParameterBox2;
+        private Label ParameterBox3;
+        private Label ParameterBox4;
+        private Label ParameterBox5;
+        private Label ParameterBox6;
+        private Button ShowTableButton;
     }
 }

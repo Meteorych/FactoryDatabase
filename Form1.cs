@@ -41,13 +41,20 @@ namespace FactoryDatabase
             InputBox5 = new TextBox();
             InputBox6 = new TextBox();
             MessageBox = new TextBox();
+            ParameterBox1 = new Label();
+            ParameterBox2 = new Label();
+            ParameterBox3 = new Label();
+            ParameterBox4 = new Label();
+            ParameterBox5 = new Label();
+            ParameterBox6 = new Label();
+            ShowTableButton = new Button();
             ((System.ComponentModel.ISupportInitialize)OutputBox).BeginInit();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(39, 26);
+            label1.Location = new Point(39, 9);
             label1.Name = "label1";
             label1.Size = new Size(82, 20);
             label1.TabIndex = 2;
@@ -55,7 +62,6 @@ namespace FactoryDatabase
             // 
             // ManageAreaButton
             // 
-            ManageAreaButton.Anchor = AnchorStyles.Top;
             ManageAreaButton.Location = new Point(743, 142);
             ManageAreaButton.Name = "ManageAreaButton";
             ManageAreaButton.Size = new Size(103, 76);
@@ -188,7 +194,7 @@ namespace FactoryDatabase
             // 
             // InputBox4
             // 
-            InputBox4.Location = new Point(39, 233);
+            InputBox4.Location = new Point(39, 242);
             InputBox4.Multiline = true;
             InputBox4.Name = "InputBox4";
             InputBox4.Size = new Size(385, 31);
@@ -219,9 +225,80 @@ namespace FactoryDatabase
             MessageBox.Size = new Size(425, 27);
             MessageBox.TabIndex = 19;
             // 
+            // ParameterBox1
+            // 
+            ParameterBox1.AutoSize = true;
+            ParameterBox1.Location = new Point(39, 51);
+            ParameterBox1.Name = "ParameterBox1";
+            ParameterBox1.Size = new Size(109, 20);
+            ParameterBox1.TabIndex = 20;
+            ParameterBox1.Text = "ParameterBox1";
+            // 
+            // ParameterBox2
+            // 
+            ParameterBox2.AutoSize = true;
+            ParameterBox2.Location = new Point(41, 108);
+            ParameterBox2.Name = "ParameterBox2";
+            ParameterBox2.Size = new Size(109, 20);
+            ParameterBox2.TabIndex = 21;
+            ParameterBox2.Text = "ParameterBox2";
+            // 
+            // ParameterBox3
+            // 
+            ParameterBox3.AutoSize = true;
+            ParameterBox3.Location = new Point(39, 170);
+            ParameterBox3.Name = "ParameterBox3";
+            ParameterBox3.Size = new Size(109, 20);
+            ParameterBox3.TabIndex = 22;
+            ParameterBox3.Text = "ParameterBox3";
+            // 
+            // ParameterBox4
+            // 
+            ParameterBox4.AutoSize = true;
+            ParameterBox4.Location = new Point(39, 219);
+            ParameterBox4.Name = "ParameterBox4";
+            ParameterBox4.Size = new Size(109, 20);
+            ParameterBox4.TabIndex = 23;
+            ParameterBox4.Text = "ParameterBox4";
+            // 
+            // ParameterBox5
+            // 
+            ParameterBox5.AutoSize = true;
+            ParameterBox5.Location = new Point(39, 276);
+            ParameterBox5.Name = "ParameterBox5";
+            ParameterBox5.Size = new Size(109, 20);
+            ParameterBox5.TabIndex = 24;
+            ParameterBox5.Text = "ParameterBox5";
+            // 
+            // ParameterBox6
+            // 
+            ParameterBox6.AutoSize = true;
+            ParameterBox6.Location = new Point(39, 325);
+            ParameterBox6.Name = "ParameterBox6";
+            ParameterBox6.Size = new Size(109, 20);
+            ParameterBox6.TabIndex = 25;
+            ParameterBox6.Text = "ParameterBox6";
+            // 
+            // ShowTableButton
+            // 
+            ShowTableButton.Location = new Point(505, 343);
+            ShowTableButton.Name = "ShowTableButton";
+            ShowTableButton.Size = new Size(484, 67);
+            ShowTableButton.TabIndex = 26;
+            ShowTableButton.Text = "Show table";
+            ShowTableButton.UseVisualStyleBackColor = true;
+            ShowTableButton.Click += button1_Click;
+            // 
             // Form1
             // 
             ClientSize = new Size(1107, 716);
+            Controls.Add(ShowTableButton);
+            Controls.Add(ParameterBox6);
+            Controls.Add(ParameterBox5);
+            Controls.Add(ParameterBox4);
+            Controls.Add(ParameterBox3);
+            Controls.Add(ParameterBox2);
+            Controls.Add(ParameterBox1);
             Controls.Add(MessageBox);
             Controls.Add(InputBox6);
             Controls.Add(InputBox5);
@@ -242,10 +319,6 @@ namespace FactoryDatabase
             Controls.Add(InputBox1);
             Name = "Form1";
             Load += Form1_Load;
-            foreach (Control control in Controls)
-            {
-                control.Anchor = AnchorStyles.Top;
-            }
             ((System.ComponentModel.ISupportInitialize)OutputBox).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -270,7 +343,7 @@ namespace FactoryDatabase
 
             catch (Exception ex)
             {
-                MessageBox.Text = $@"{ex.Message}";
+                MessageBox.Text = @"Input 6 parameters (string, string, int, string, string, string)";
             }
 
         }
@@ -279,7 +352,6 @@ namespace FactoryDatabase
         {
             try
             {
-
                 using var cmd = new NpgsqlCommand();
                 cmd.Connection = _connection;
                 cmd.CommandType = CommandType.Text;
@@ -294,7 +366,7 @@ namespace FactoryDatabase
             }
             catch (Exception ex)
             {
-                MessageBox.Text = $@"{ex.Message}";
+                MessageBox.Text = @"Input 5 parameters (string, string, int, string, string)";
             }
 
         }
@@ -315,7 +387,7 @@ namespace FactoryDatabase
             }
             catch (Exception ex)
             {
-                MessageBox.Text = $@"{ex.Message}";
+                MessageBox.Text = @"Input 4 parameters (string, int, int, string)";
             }
 
         }
@@ -329,15 +401,15 @@ namespace FactoryDatabase
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "SELECT manage_failure_revision(@action, @revision_id, @revision_date, @fail_reason, @equipment_id)";
                 cmd.Parameters.AddWithValue("action", InputBox1.Text);
-                cmd.Parameters.AddWithValue("revision_id", InputBox2.Text);
-                cmd.Parameters.AddWithValue("revision_date", Convert.ToInt32(InputBox3.Text));
+                cmd.Parameters.AddWithValue("revision_id", Convert.ToInt32(InputBox2.Text));
+                cmd.Parameters.AddWithValue("revision_date", DateOnly.Parse(InputBox3.Text));
                 cmd.Parameters.AddWithValue("fail_reason", InputBox4.Text);
-                cmd.Parameters.AddWithValue("equipment_id", InputBox5.Text);
+                cmd.Parameters.AddWithValue("equipment_id", Convert.ToInt32(InputBox5.Text));
                 cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
-                MessageBox.Text = $@"{ex.Message}";
+                MessageBox.Text = @"Input 5 parameters (string, int, int, string, int)";
             }
         }
 
@@ -345,7 +417,6 @@ namespace FactoryDatabase
         {
             try
             {
-
                 using var cmd = new NpgsqlCommand();
                 cmd.Connection = _connection;
                 cmd.CommandType = CommandType.Text;
@@ -358,7 +429,7 @@ namespace FactoryDatabase
             }
             catch (Exception ex)
             {
-                MessageBox.Text = $@"{ex.Message}";
+                MessageBox.Text = @"Input 4 parameters (string, string, string, int)";
             }
         }
 
@@ -391,13 +462,34 @@ namespace FactoryDatabase
             }
             catch (Exception ex)
             {
-                MessageBox.Text = $@"{ex.Message}";
+                MessageBox.Text = @"Input 1 parameter (int)"; ;
             }
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             MinimumSize = new Size(1080, 1080);
+            foreach (Control control in Controls)
+            {
+                control.Anchor = AnchorStyles.Top;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using var adapter = new NpgsqlDataAdapter($"SELECT * FROM {InputBox1.Text}", _connection);
+                var dataTable = new DataTable();
+                adapter.Fill(dataTable);
+                OutputBox.DataSource = dataTable;
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(@"Input name of table.");
+                throw;
+            }
+            
         }
     }
 }
