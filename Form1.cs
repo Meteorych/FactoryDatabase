@@ -333,7 +333,7 @@ namespace FactoryDatabase
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "SELECT manage_plan_revision(@action, @revision_id, @revision_date, @revision_result, @fail_reason, @equipment_id)";
                 cmd.Parameters.AddWithValue("action", InputBox1.Text);
-                cmd.Parameters.AddWithValue("revision_id", InputBox2.Text);
+                cmd.Parameters.AddWithValue("revision_id", DateOnly.Parse(InputBox2.Text));
                 cmd.Parameters.AddWithValue("revision_date", Convert.ToInt32(InputBox3.Text));
                 cmd.Parameters.AddWithValue("revision_result", InputBox4.Text);
                 cmd.Parameters.AddWithValue("fail_reason", InputBox5.Text);
@@ -341,9 +341,9 @@ namespace FactoryDatabase
                 cmd.ExecuteNonQuery();
             }
 
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Text = @"Input 6 parameters (string, string, int, string, string, string)";
+                MessageBox.Text = @"Input 6 parameters (string, date, int, string, string, string)";
             }
 
         }
@@ -358,15 +358,15 @@ namespace FactoryDatabase
                 cmd.CommandText =
                     "SELECT manage_area(@action, @employee_id, @employee_table_num, @employee_fullname, @employee_position)";
                 cmd.Parameters.AddWithValue("action", InputBox1.Text);
-                cmd.Parameters.AddWithValue("employee_id", InputBox2.Text);
+                cmd.Parameters.AddWithValue("employee_id", Convert.ToInt32(InputBox2.Text));
                 cmd.Parameters.AddWithValue("employee_table_num", Convert.ToInt32(InputBox3.Text));
                 cmd.Parameters.AddWithValue("employee_fullname", InputBox4.Text);
                 cmd.Parameters.AddWithValue("employee_position", InputBox5.Text);
                 cmd.ExecuteNonQuery();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Text = @"Input 5 parameters (string, string, int, string, string)";
+                MessageBox.Text = @"Input 5 parameters (string, int, int, string, string)";
             }
 
         }
@@ -385,7 +385,7 @@ namespace FactoryDatabase
                 cmd.Parameters.AddWithValue("area_name", InputBox4.Text);
                 cmd.ExecuteNonQuery();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Text = @"Input 4 parameters (string, int, int, string)";
             }
@@ -407,7 +407,7 @@ namespace FactoryDatabase
                 cmd.Parameters.AddWithValue("equipment_id", Convert.ToInt32(InputBox5.Text));
                 cmd.ExecuteNonQuery();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Text = @"Input 5 parameters (string, int, int, string, int)";
             }
@@ -427,7 +427,7 @@ namespace FactoryDatabase
                 cmd.Parameters.AddWithValue("area_id", Convert.ToInt32(InputBox4.Text));
                 cmd.ExecuteNonQuery();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Text = @"Input 4 parameters (string, string, string, int)";
             }
@@ -443,7 +443,8 @@ namespace FactoryDatabase
 
         private void EmployeesViewButton_Click(object sender, EventArgs e)
         {
-            using var adapter = new NpgsqlDataAdapter("SELECT * FROM view_technical_department_employees", _connection);
+            using var adapter = new NpgsqlDataAdapter("SELECT * FROM view_technical_department_employees(@requested_date)", _connection);
+            adapter.SelectCommand.Parameters.AddWithValue("@requested_date", DateOnly.Parse(InputBox1.Text));
             var dataTable = new DataTable();
             adapter.Fill(dataTable);
             OutputBox.DataSource = dataTable;
@@ -460,7 +461,7 @@ namespace FactoryDatabase
                 adapter.Fill(dataTable);
                 OutputBox.DataSource = dataTable;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Text = @"Input 1 parameter (int)"; ;
             }
