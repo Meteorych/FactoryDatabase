@@ -64,9 +64,9 @@ namespace FactoryDatabase
             // 
             // ManageAreaButton
             // 
-            ManageAreaButton.Location = new Point(743, 82);
+            ManageAreaButton.Location = new Point(726, 108);
             ManageAreaButton.Name = "ManageAreaButton";
-            ManageAreaButton.Size = new Size(103, 76);
+            ManageAreaButton.Size = new Size(103, 89);
             ManageAreaButton.TabIndex = 3;
             ManageAreaButton.Text = "Manage area";
             ManageAreaButton.UseVisualStyleBackColor = true;
@@ -74,9 +74,9 @@ namespace FactoryDatabase
             // 
             // ManageEquipmentButton
             // 
-            ManageEquipmentButton.Location = new Point(616, 164);
+            ManageEquipmentButton.Location = new Point(616, 198);
             ManageEquipmentButton.Name = "ManageEquipmentButton";
-            ManageEquipmentButton.Size = new Size(105, 89);
+            ManageEquipmentButton.Size = new Size(104, 89);
             ManageEquipmentButton.TabIndex = 4;
             ManageEquipmentButton.Text = "Manage equipment";
             ManageEquipmentButton.UseVisualStyleBackColor = true;
@@ -84,9 +84,9 @@ namespace FactoryDatabase
             // 
             // ManageFailureButton
             // 
-            ManageFailureButton.Location = new Point(505, 164);
+            ManageFailureButton.Location = new Point(505, 198);
             ManageFailureButton.Name = "ManageFailureButton";
-            ManageFailureButton.Size = new Size(94, 89);
+            ManageFailureButton.Size = new Size(105, 89);
             ManageFailureButton.TabIndex = 5;
             ManageFailureButton.Text = "Manage failure revisions";
             ManageFailureButton.UseVisualStyleBackColor = true;
@@ -95,9 +95,9 @@ namespace FactoryDatabase
             // ManagePlanButton
             // 
             ManagePlanButton.BackColor = Color.White;
-            ManagePlanButton.Location = new Point(505, 82);
+            ManagePlanButton.Location = new Point(505, 108);
             ManagePlanButton.Name = "ManagePlanButton";
-            ManagePlanButton.Size = new Size(93, 76);
+            ManagePlanButton.Size = new Size(105, 89);
             ManagePlanButton.TabIndex = 6;
             ManagePlanButton.Text = "Manage plan revision";
             ManagePlanButton.UseVisualStyleBackColor = false;
@@ -105,9 +105,9 @@ namespace FactoryDatabase
             // 
             // ManageEmployeeButton
             // 
-            ManageEmployeeButton.Location = new Point(615, 82);
+            ManageEmployeeButton.Location = new Point(615, 108);
             ManageEmployeeButton.Name = "ManageEmployeeButton";
-            ManageEmployeeButton.Size = new Size(105, 76);
+            ManageEmployeeButton.Size = new Size(105, 89);
             ManageEmployeeButton.TabIndex = 7;
             ManageEmployeeButton.Text = "Manage employee";
             ManageEmployeeButton.UseVisualStyleBackColor = true;
@@ -115,9 +115,9 @@ namespace FactoryDatabase
             // 
             // FailedEquipmentViewButton
             // 
-            FailedEquipmentViewButton.Location = new Point(883, 82);
+            FailedEquipmentViewButton.Location = new Point(835, 108);
             FailedEquipmentViewButton.Name = "FailedEquipmentViewButton";
-            FailedEquipmentViewButton.Size = new Size(106, 74);
+            FailedEquipmentViewButton.Size = new Size(106, 89);
             FailedEquipmentViewButton.TabIndex = 8;
             FailedEquipmentViewButton.Text = "View failed equipment";
             FailedEquipmentViewButton.UseVisualStyleBackColor = true;
@@ -125,9 +125,9 @@ namespace FactoryDatabase
             // 
             // InspectionHistoryViewButton
             // 
-            InspectionHistoryViewButton.Location = new Point(885, 164);
+            InspectionHistoryViewButton.Location = new Point(835, 198);
             InspectionHistoryViewButton.Name = "InspectionHistoryViewButton";
-            InspectionHistoryViewButton.Size = new Size(105, 89);
+            InspectionHistoryViewButton.Size = new Size(106, 89);
             InspectionHistoryViewButton.TabIndex = 9;
             InspectionHistoryViewButton.Text = "View inspection history";
             InspectionHistoryViewButton.UseVisualStyleBackColor = true;
@@ -135,7 +135,7 @@ namespace FactoryDatabase
             // 
             // EmployeesViewButton
             // 
-            EmployeesViewButton.Location = new Point(744, 164);
+            EmployeesViewButton.Location = new Point(726, 198);
             EmployeesViewButton.Name = "EmployeesViewButton";
             EmployeesViewButton.Size = new Size(103, 89);
             EmployeesViewButton.TabIndex = 10;
@@ -283,9 +283,9 @@ namespace FactoryDatabase
             // 
             // ShowTableButton
             // 
-            ShowTableButton.Location = new Point(505, 343);
+            ShowTableButton.Location = new Point(615, 293);
             ShowTableButton.Name = "ShowTableButton";
-            ShowTableButton.Size = new Size(484, 67);
+            ShowTableButton.Size = new Size(214, 86);
             ShowTableButton.TabIndex = 26;
             ShowTableButton.Text = "Show table";
             ShowTableButton.UseVisualStyleBackColor = true;
@@ -293,9 +293,9 @@ namespace FactoryDatabase
             // 
             // ManyToManyEmployees
             // 
-            ManyToManyEmployees.Location = new Point(505, 257);
+            ManyToManyEmployees.Location = new Point(505, 291);
             ManyToManyEmployees.Name = "ManyToManyEmployees";
-            ManyToManyEmployees.Size = new Size(216, 78);
+            ManyToManyEmployees.Size = new Size(105, 88);
             ManyToManyEmployees.TabIndex = 27;
             ManyToManyEmployees.Text = "RevisionEmployees";
             ManyToManyEmployees.UseVisualStyleBackColor = true;
@@ -303,9 +303,9 @@ namespace FactoryDatabase
             // 
             // ManyToManyRevision
             // 
-            ManyToManyRevision.Location = new Point(744, 257);
+            ManyToManyRevision.Location = new Point(835, 293);
             ManyToManyRevision.Name = "ManyToManyRevision";
-            ManyToManyRevision.Size = new Size(245, 78);
+            ManyToManyRevision.Size = new Size(106, 86);
             ManyToManyRevision.TabIndex = 28;
             ManyToManyRevision.Text = "EmployeeRevisions";
             ManyToManyRevision.UseVisualStyleBackColor = true;
