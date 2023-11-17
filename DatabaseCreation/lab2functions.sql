@@ -139,23 +139,13 @@ SELECT
     pr.fail_reason
 FROM
     Plan_revision pr
-INNER JOIN Equipment e ON pr.equipment_id = e.id
-UNION ALL
-SELECT
-    e.id,
-    fr.revision_date AS inspection_date,
-    e.equipment_name,
-    e.equipment_type,
-    FALSE AS inspection_result,
-    fr.fail_reason
-FROM
-    Failure_revision fr
-INNER JOIN Equipment e ON fr.equipment_id = e.id;
+INNER JOIN Equipment e ON pr.equipment_id = e.id;
 
 CREATE OR REPLACE VIEW view_technical_department_employees AS
 SELECT
     e.employee_fullname,
-    e.employee_position
+    e.employee_position,
+    pr.revision_date
 FROM
     Employee e
 INNER JOIN Revisionable_employee re ON e.id = re.employee_id
@@ -163,7 +153,8 @@ INNER JOIN Plan_revision pr ON re.revision_id = pr.id
 UNION ALL
 SELECT
     e.employee_fullname,
-    e.employee_position
+    e.employee_position,
+    fr.revision_date
 FROM
     Employee e
 INNER JOIN Revisionable_employee re ON e.id = re.employee_id
@@ -183,18 +174,20 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION view_equipment_inspection_history(inventory_number INT)
+CREATE OR REPLACE FUNCTION view_technical_department_employees(requested_date DATE)
 RETURNS TABLE (
-    id INT,
-    inspection_date DATE,
-    equipment_name VARCHAR(255),
-    equipment_type VARCHAR(255),
-    inspection_result BOOLEAN,
-    fail_reason VARCHAR(255)
+    employee_fullname VARCHAR(255),
+    employee_position VARCHAR(255),
+    revision_date DATE
 ) AS $$
 BEGIN
     RETURN QUERY
-    SELECT * FROM view_equipment_inspection_history WHERE id = inventory_number;
+    SELECT 
+         vtde.employee_fullname,
+         vtde.employee_position,
+         vtde.revision_date
+    FROM view_technical_department_employees vtde
+	WHERE vtde.revision_date = requested_date;
 END;
 $$ LANGUAGE plpgsql;
 
