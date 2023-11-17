@@ -213,3 +213,45 @@ BEGIN
 	WHERE veih.id = inventory_number;
 END;
 $$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION many_to_many_revisions(our_revision_id int)
+RETURNS TABLE 
+(
+    employee_name VARCHAR(255),
+    employee_place VARCHAR(255)
+) 
+AS $$
+BEGIN 
+    RETURN QUERY
+    SELECT
+        e.employee_fullname,
+        e.employee_position
+    FROM Revisionable_employee re
+	INNER JOIN Employee e ON e.id = re.employee_id
+    WHERE re.revision_id = our_revision_id;
+END;
+$$ LANGUAGE plpgsql
+
+CREATE OR REPLACE FUNCTION many_to_many_employees(our_employee_id int)
+RETURNS TABLE 
+(
+    revision_date DATE,
+    equipment_id INT
+) 
+AS $$
+BEGIN 
+    RETURN QUERY
+    SELECT
+        pr.revision_date,
+        pr.equipment_id
+    FROM plan_revision pr
+	INNER JOIN Revisionable_employee re ON re.revision_id = pr.id
+	UNION
+    SELECT 
+        fr.revision_date,
+        fr.equipment_id
+	FROM failure_revision fr
+    INNER JOIN Revisionable_employee re ON re.revision_id = fr.id
+    WHERE re.employee_id = our_employee_id;
+END;
+$$ LANGUAGE plpgsql
