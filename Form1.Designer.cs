@@ -45,5 +45,7 @@
         private Label ParameterBox5;
         private Label ParameterBox6;
         private Button ShowTableButton;
+        private Button ManyToManyEmployees;
+        private Button ManyToManyRevision;
     }
 }

@@ -48,6 +48,8 @@ namespace FactoryDatabase
             ParameterBox5 = new Label();
             ParameterBox6 = new Label();
             ShowTableButton = new Button();
+            ManyToManyEmployees = new Button();
+            ManyToManyRevision = new Button();
             ((System.ComponentModel.ISupportInitialize)OutputBox).BeginInit();
             SuspendLayout();
             // 
@@ -62,7 +64,7 @@ namespace FactoryDatabase
             // 
             // ManageAreaButton
             // 
-            ManageAreaButton.Location = new Point(743, 142);
+            ManageAreaButton.Location = new Point(743, 82);
             ManageAreaButton.Name = "ManageAreaButton";
             ManageAreaButton.Size = new Size(103, 76);
             ManageAreaButton.TabIndex = 3;
@@ -72,7 +74,7 @@ namespace FactoryDatabase
             // 
             // ManageEquipmentButton
             // 
-            ManageEquipmentButton.Location = new Point(615, 233);
+            ManageEquipmentButton.Location = new Point(616, 164);
             ManageEquipmentButton.Name = "ManageEquipmentButton";
             ManageEquipmentButton.Size = new Size(105, 89);
             ManageEquipmentButton.TabIndex = 4;
@@ -82,7 +84,7 @@ namespace FactoryDatabase
             // 
             // ManageFailureButton
             // 
-            ManageFailureButton.Location = new Point(504, 233);
+            ManageFailureButton.Location = new Point(505, 164);
             ManageFailureButton.Name = "ManageFailureButton";
             ManageFailureButton.Size = new Size(94, 89);
             ManageFailureButton.TabIndex = 5;
@@ -93,7 +95,7 @@ namespace FactoryDatabase
             // ManagePlanButton
             // 
             ManagePlanButton.BackColor = Color.White;
-            ManagePlanButton.Location = new Point(505, 142);
+            ManagePlanButton.Location = new Point(505, 82);
             ManagePlanButton.Name = "ManagePlanButton";
             ManagePlanButton.Size = new Size(93, 76);
             ManagePlanButton.TabIndex = 6;
@@ -103,7 +105,7 @@ namespace FactoryDatabase
             // 
             // ManageEmployeeButton
             // 
-            ManageEmployeeButton.Location = new Point(615, 142);
+            ManageEmployeeButton.Location = new Point(615, 82);
             ManageEmployeeButton.Name = "ManageEmployeeButton";
             ManageEmployeeButton.Size = new Size(105, 76);
             ManageEmployeeButton.TabIndex = 7;
@@ -113,7 +115,7 @@ namespace FactoryDatabase
             // 
             // FailedEquipmentViewButton
             // 
-            FailedEquipmentViewButton.Location = new Point(883, 142);
+            FailedEquipmentViewButton.Location = new Point(883, 82);
             FailedEquipmentViewButton.Name = "FailedEquipmentViewButton";
             FailedEquipmentViewButton.Size = new Size(106, 74);
             FailedEquipmentViewButton.TabIndex = 8;
@@ -123,7 +125,7 @@ namespace FactoryDatabase
             // 
             // InspectionHistoryViewButton
             // 
-            InspectionHistoryViewButton.Location = new Point(884, 233);
+            InspectionHistoryViewButton.Location = new Point(885, 164);
             InspectionHistoryViewButton.Name = "InspectionHistoryViewButton";
             InspectionHistoryViewButton.Size = new Size(105, 89);
             InspectionHistoryViewButton.TabIndex = 9;
@@ -133,7 +135,7 @@ namespace FactoryDatabase
             // 
             // EmployeesViewButton
             // 
-            EmployeesViewButton.Location = new Point(743, 233);
+            EmployeesViewButton.Location = new Point(744, 164);
             EmployeesViewButton.Name = "EmployeesViewButton";
             EmployeesViewButton.Size = new Size(103, 89);
             EmployeesViewButton.TabIndex = 10;
@@ -289,9 +291,31 @@ namespace FactoryDatabase
             ShowTableButton.UseVisualStyleBackColor = true;
             ShowTableButton.Click += button1_Click;
             // 
+            // ManyToManyEmployees
+            // 
+            ManyToManyEmployees.Location = new Point(505, 257);
+            ManyToManyEmployees.Name = "ManyToManyEmployees";
+            ManyToManyEmployees.Size = new Size(216, 78);
+            ManyToManyEmployees.TabIndex = 27;
+            ManyToManyEmployees.Text = "RevisionEmployees";
+            ManyToManyEmployees.UseVisualStyleBackColor = true;
+            ManyToManyEmployees.Click += ManyToManyEmployees_Click;
+            // 
+            // ManyToManyRevision
+            // 
+            ManyToManyRevision.Location = new Point(744, 257);
+            ManyToManyRevision.Name = "ManyToManyRevision";
+            ManyToManyRevision.Size = new Size(245, 78);
+            ManyToManyRevision.TabIndex = 28;
+            ManyToManyRevision.Text = "EmployeeRevisions";
+            ManyToManyRevision.UseVisualStyleBackColor = true;
+            ManyToManyRevision.Click += ManyToManyRevision_Click;
+            // 
             // Form1
             // 
             ClientSize = new Size(1107, 716);
+            Controls.Add(ManyToManyRevision);
+            Controls.Add(ManyToManyEmployees);
             Controls.Add(ShowTableButton);
             Controls.Add(ParameterBox6);
             Controls.Add(ParameterBox5);
@@ -443,11 +467,20 @@ namespace FactoryDatabase
 
         private void EmployeesViewButton_Click(object sender, EventArgs e)
         {
-            using var adapter = new NpgsqlDataAdapter("SELECT * FROM view_technical_department_employees(@requested_date)", _connection);
-            adapter.SelectCommand.Parameters.AddWithValue("@requested_date", DateOnly.Parse(InputBox1.Text));
-            var dataTable = new DataTable();
-            adapter.Fill(dataTable);
-            OutputBox.DataSource = dataTable;
+            try
+            {
+                using var adapter =
+                    new NpgsqlDataAdapter("SELECT * FROM view_technical_department_employees(@requested_date)",
+                        _connection);
+                adapter.SelectCommand.Parameters.AddWithValue("@requested_date", DateOnly.Parse(InputBox1.Text));
+                var dataTable = new DataTable();
+                adapter.Fill(dataTable);
+                OutputBox.DataSource = dataTable;
+            }
+            catch (Exception)
+            {
+                MessageBox.Text = @"Input 1 parameter (Date)";
+            }
 
         }
 
@@ -485,12 +518,44 @@ namespace FactoryDatabase
                 adapter.Fill(dataTable);
                 OutputBox.DataSource = dataTable;
             }
-            catch (Exception exception)
+            catch (Exception)
             {
-                Console.WriteLine(@"Input name of table.");
-                throw;
+                MessageBox.Text = @"Input name of table.";
+
             }
-            
+
+        }
+
+        private void ManyToManyEmployees_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using var adapter = new NpgsqlDataAdapter($"SELECT * FROM many_to_many_revisions(@our_revision_id)", _connection);
+                adapter.SelectCommand.Parameters.AddWithValue("@our_revision_id", Convert.ToInt32(InputBox1.Text));
+                var dataTable = new DataTable();
+                adapter.Fill(dataTable);
+                OutputBox.DataSource = dataTable;
+            }
+            catch (Exception)
+            {
+                MessageBox.Text = @"Input id of revision (int)";
+            }
+        }
+
+        private void ManyToManyRevision_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using var adapter = new NpgsqlDataAdapter($"SELECT * FROM many_to_many_employees(@our_employee_id)", _connection);
+                adapter.SelectCommand.Parameters.AddWithValue("@our_employee_id", Convert.ToInt32(InputBox1.Text));
+                var dataTable = new DataTable();
+                adapter.Fill(dataTable);
+                OutputBox.DataSource = dataTable;
+            }
+            catch (Exception)
+            {
+                MessageBox.Text = @"Input id of employee (int)";
+            }
         }
     }
 }
