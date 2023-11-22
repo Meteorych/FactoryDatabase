@@ -68,7 +68,7 @@ namespace FactoryDatabase
             ManageAreaButton.Name = "ManageAreaButton";
             ManageAreaButton.Size = new Size(103, 89);
             ManageAreaButton.TabIndex = 3;
-            ManageAreaButton.Text = @"Manage area";
+            ManageAreaButton.Text = "Manage area";
             ManageAreaButton.UseVisualStyleBackColor = true;
             ManageAreaButton.Click += ManageAreaButton_Click;
             // 
@@ -78,7 +78,7 @@ namespace FactoryDatabase
             ManageEquipmentButton.Name = "ManageEquipmentButton";
             ManageEquipmentButton.Size = new Size(104, 89);
             ManageEquipmentButton.TabIndex = 4;
-            ManageEquipmentButton.Text = @"Manage equipment";
+            ManageEquipmentButton.Text = "Manage equipment";
             ManageEquipmentButton.UseVisualStyleBackColor = true;
             ManageEquipmentButton.Click += ManageEquipmentButton_Click;
             // 
@@ -119,7 +119,7 @@ namespace FactoryDatabase
             FailedEquipmentViewButton.Name = "FailedEquipmentViewButton";
             FailedEquipmentViewButton.Size = new Size(106, 89);
             FailedEquipmentViewButton.TabIndex = 8;
-            FailedEquipmentViewButton.Text = @"View failed equipment";
+            FailedEquipmentViewButton.Text = "View failed equipment";
             FailedEquipmentViewButton.UseVisualStyleBackColor = true;
             FailedEquipmentViewButton.Click += FailedEquipmentViewButton_Click;
             // 
@@ -129,7 +129,7 @@ namespace FactoryDatabase
             InspectionHistoryViewButton.Name = "InspectionHistoryViewButton";
             InspectionHistoryViewButton.Size = new Size(106, 89);
             InspectionHistoryViewButton.TabIndex = 9;
-            InspectionHistoryViewButton.Text = @"View inspection history";
+            InspectionHistoryViewButton.Text = "View inspection history";
             InspectionHistoryViewButton.UseVisualStyleBackColor = true;
             InspectionHistoryViewButton.Click += InspectionHistoryViewButton_Click;
             // 
@@ -139,7 +139,7 @@ namespace FactoryDatabase
             EmployeesViewButton.Name = "EmployeesViewButton";
             EmployeesViewButton.Size = new Size(103, 89);
             EmployeesViewButton.TabIndex = 10;
-            EmployeesViewButton.Text = @"View technical department employees";
+            EmployeesViewButton.Text = "View technical department employees";
             EmployeesViewButton.UseVisualStyleBackColor = true;
             EmployeesViewButton.Click += EmployeesViewButton_Click;
             // 
@@ -166,7 +166,7 @@ namespace FactoryDatabase
             // 
             // Column1
             // 
-            Column1.HeaderText = "Column1";
+            Column1.HeaderText = @"Column1";
             Column1.MinimumWidth = 6;
             Column1.Name = "Column1";
             // 
@@ -204,7 +204,7 @@ namespace FactoryDatabase
             // 
             // InputBox5
             // 
-            InputBox5.Location = new Point(39, 291);
+            InputBox5.Location = new Point(39, 299);
             InputBox5.Multiline = true;
             InputBox5.Name = "InputBox5";
             InputBox5.Size = new Size(385, 31);
@@ -212,7 +212,7 @@ namespace FactoryDatabase
             // 
             // InputBox6
             // 
-            InputBox6.Location = new Point(41, 343);
+            InputBox6.Location = new Point(39, 356);
             InputBox6.Multiline = true;
             InputBox6.Name = "InputBox6";
             InputBox6.Size = new Size(385, 31);
@@ -234,7 +234,7 @@ namespace FactoryDatabase
             ParameterBox1.Name = "ParameterBox1";
             ParameterBox1.Size = new Size(109, 20);
             ParameterBox1.TabIndex = 20;
-            ParameterBox1.Text = @"ParameterBox1";
+            ParameterBox1.Text = "ParameterBox1";
             // 
             // ParameterBox2
             // 
@@ -243,16 +243,16 @@ namespace FactoryDatabase
             ParameterBox2.Name = "ParameterBox2";
             ParameterBox2.Size = new Size(109, 20);
             ParameterBox2.TabIndex = 21;
-            ParameterBox2.Text = @"ParameterBox2";
+            ParameterBox2.Text = "ParameterBox2";
             // 
             // ParameterBox3
             // 
             ParameterBox3.AutoSize = true;
-            ParameterBox3.Location = new Point(39, 170);
+            ParameterBox3.Location = new Point(39, 161);
             ParameterBox3.Name = "ParameterBox3";
             ParameterBox3.Size = new Size(109, 20);
             ParameterBox3.TabIndex = 22;
-            ParameterBox3.Text = @"ParameterBox3";
+            ParameterBox3.Text = "ParameterBox3";
             // 
             // ParameterBox4
             // 
@@ -261,7 +261,7 @@ namespace FactoryDatabase
             ParameterBox4.Name = "ParameterBox4";
             ParameterBox4.Size = new Size(109, 20);
             ParameterBox4.TabIndex = 23;
-            ParameterBox4.Text = @"ParameterBox4";
+            ParameterBox4.Text = "ParameterBox4";
             // 
             // ParameterBox5
             // 
@@ -270,16 +270,16 @@ namespace FactoryDatabase
             ParameterBox5.Name = "ParameterBox5";
             ParameterBox5.Size = new Size(109, 20);
             ParameterBox5.TabIndex = 24;
-            ParameterBox5.Text = @"ParameterBox5";
+            ParameterBox5.Text = "ParameterBox5";
             // 
             // ParameterBox6
             // 
             ParameterBox6.AutoSize = true;
-            ParameterBox6.Location = new Point(39, 325);
+            ParameterBox6.Location = new Point(39, 333);
             ParameterBox6.Name = "ParameterBox6";
             ParameterBox6.Size = new Size(109, 20);
             ParameterBox6.TabIndex = 25;
-            ParameterBox6.Text = @"ParameterBox6";
+            ParameterBox6.Text = "ParameterBox6";
             // 
             // ShowTableButton
             // 
@@ -287,7 +287,7 @@ namespace FactoryDatabase
             ShowTableButton.Name = "ShowTableButton";
             ShowTableButton.Size = new Size(214, 86);
             ShowTableButton.TabIndex = 26;
-            ShowTableButton.Text = @"Show table";
+            ShowTableButton.Text = "Show table";
             ShowTableButton.UseVisualStyleBackColor = true;
             ShowTableButton.Click += button1_Click;
             // 
@@ -297,7 +297,7 @@ namespace FactoryDatabase
             ManyToManyEmployees.Name = "ManyToManyEmployees";
             ManyToManyEmployees.Size = new Size(105, 88);
             ManyToManyEmployees.TabIndex = 27;
-            ManyToManyEmployees.Text = @"RevisionEmployees";
+            ManyToManyEmployees.Text = "RevisionEmployees";
             ManyToManyEmployees.UseVisualStyleBackColor = true;
             ManyToManyEmployees.Click += ManyToManyEmployees_Click;
             // 
@@ -307,7 +307,7 @@ namespace FactoryDatabase
             ManyToManyRevision.Name = "ManyToManyRevision";
             ManyToManyRevision.Size = new Size(106, 86);
             ManyToManyRevision.TabIndex = 28;
-            ManyToManyRevision.Text = @"EmployeeRevisions";
+            ManyToManyRevision.Text = "EmployeeRevisions";
             ManyToManyRevision.UseVisualStyleBackColor = true;
             ManyToManyRevision.Click += ManyToManyRevision_Click;
             // 
