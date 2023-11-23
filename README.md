@@ -11,3 +11,10 @@ Database and interface for this database that give opportunity to make queries. 
 
 All _Manage table_ buttons are used to delete/add/edit onfromation from sql-tables. Other buttons are used to view certain information from tables in component DataGridView. 
 Fro example, this is showcase of using _Show table_ button work:
+![Program's work image](https://github.com/Meteorych/FactoryDatabase/blob/master/Images/tableshow.png)
+
+When parameters are wrong or user doesn't fill required parameters then program show text of exception in special _MessageBox_. Example of this: 
+![Exception example](https://github.com/Meteorych/FactoryDatabase/blob/master/Images/Exception.png)
+
+# License
+Program is open source and available under the [MIT License](https://github.com/Meteorych/FactoryDatabase/blob/master/LICENSE.txt).
