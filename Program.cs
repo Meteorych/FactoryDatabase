@@ -17,7 +17,7 @@ namespace FactoryDatabase
 
         public static NpgsqlConnection GetConnection()
         {
-            return new NpgsqlConnection(@"Host=localhost;Port=5433;Database=factory;Username=postgres;Password=doomslayer");
+            return new NpgsqlConnection(@"Host=localhost;Port=5433;Database=factory;Username=postgres;Password=");
         }
     }
 }
